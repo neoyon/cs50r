@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>cs50 intro to r - CS50’s Introduction to Programming with R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">cs50 intro to r</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#representing-data" id="toc-representing-data" class="nav-link" data-scroll-target="#representing-data">Representing Data</a></li>
+  <li><a href="#transforming-data" id="toc-transforming-data" class="nav-link" data-scroll-target="#transforming-data">Transforming Data</a></li>
+  <li><a href="#applying-functions" id="toc-applying-functions" class="nav-link" data-scroll-target="#applying-functions">Applying Functions</a></li>
+  <li><a href="#tidying-data" id="toc-tidying-data" class="nav-link" data-scroll-target="#tidying-data">Tidying Data</a>
+  <ul class="collapse">
+  <li><a href="#fonction-select" id="toc-fonction-select" class="nav-link" data-scroll-target="#fonction-select">Fonction ‘<code>select</code>’</a></li>
+  <li><a href="#utilisation-de-ends_with-pour-optimiser-ce-cas" id="toc-utilisation-de-ends_with-pour-optimiser-ce-cas" class="nav-link" data-scroll-target="#utilisation-de-ends_with-pour-optimiser-ce-cas">Utilisation de ‘<code>ends_with</code>’ pour optimiser ce cas</a></li>
+  <li><a href="#fonction-filter" id="toc-fonction-filter" class="nav-link" data-scroll-target="#fonction-filter">Fonction ‘<code>filter</code>’</a></li>
+  <li><a href="#fonction-arrange" id="toc-fonction-arrange" class="nav-link" data-scroll-target="#fonction-arrange">Fonction ‘<code>arrange</code>’</a></li>
+  <li><a href="#fonction-distinct" id="toc-fonction-distinct" class="nav-link" data-scroll-target="#fonction-distinct">Fonction ‘<code>distinct</code>’</a></li>
+  <li><a href="#fonction-write.csv" id="toc-fonction-write.csv" class="nav-link" data-scroll-target="#fonction-write.csv">Fonction ‘<code>write.csv</code>’</a></li>
+  <li><a href="#fonction-read.csv" id="toc-fonction-read.csv" class="nav-link" data-scroll-target="#fonction-read.csv">Fonction ‘<code>read.csv</code>’</a></li>
+  <li><a href="#fonction-group_by" id="toc-fonction-group_by" class="nav-link" data-scroll-target="#fonction-group_by">Fonction ‘<code>group_by</code>’</a></li>
+  <li><a href="#fonction-summarise" id="toc-fonction-summarise" class="nav-link" data-scroll-target="#fonction-summarise">Fonction ‘<code>summarise</code>’</a></li>
+  <li><a href="#fonction-pivot" id="toc-fonction-pivot" class="nav-link" data-scroll-target="#fonction-pivot">Fonction ‘<code>pivot</code>’</a></li>
+  <li><a href="#stringr-pour-nettoyer-un-dataset-dégueulasse" id="toc-stringr-pour-nettoyer-un-dataset-dégueulasse" class="nav-link" data-scroll-target="#stringr-pour-nettoyer-un-dataset-dégueulasse"><code>stringr</code> pour nettoyer un dataset dégueulasse</a></li>
+  </ul></li>
+  <li><a href="#visualizing-data" id="toc-visualizing-data" class="nav-link" data-scroll-target="#visualizing-data">Visualizing Data</a>
+  <ul class="collapse">
+  <li><a href="#diagramme-en-barres" id="toc-diagramme-en-barres" class="nav-link" data-scroll-target="#diagramme-en-barres">DIAGRAMME EN BARRES</a></li>
+  <li><a href="#fonction-ggplot" id="toc-fonction-ggplot" class="nav-link" data-scroll-target="#fonction-ggplot">Fonction ‘<code>ggplot</code>’</a></li>
+  <li><a href="#fonction-scale" id="toc-fonction-scale" class="nav-link" data-scroll-target="#fonction-scale">Fonction ‘<code>scale</code>’</a></li>
+  <li><a href="#fonction-labs" id="toc-fonction-labs" class="nav-link" data-scroll-target="#fonction-labs">Fonction ‘<code>labs</code>’</a></li>
+  <li><a href="#fonction-theme" id="toc-fonction-theme" class="nav-link" data-scroll-target="#fonction-theme">Fonction ‘<code>theme</code>’</a></li>
+  <li><a href="#fonction-ggsave" id="toc-fonction-ggsave" class="nav-link" data-scroll-target="#fonction-ggsave">Fonction ‘<code>ggsave</code>’</a></li>
+  <li><a href="#nuage-de-points" id="toc-nuage-de-points" class="nav-link" data-scroll-target="#nuage-de-points">NUAGE DE POINTS</a></li>
+  <li><a href="#courbes" id="toc-courbes" class="nav-link" data-scroll-target="#courbes">COURBES</a></li>
+  </ul></li>
+  <li><a href="#testing-programs" id="toc-testing-programs" class="nav-link" data-scroll-target="#testing-programs">Testing Programs</a>
+  <ul class="collapse">
+  <li><a href="#exceptions" id="toc-exceptions" class="nav-link" data-scroll-target="#exceptions">Exceptions</a></li>
+  <li><a href="#fonction-message" id="toc-fonction-message" class="nav-link" data-scroll-target="#fonction-message">Fonction ‘<code>message</code>’</a></li>
+  <li><a href="#fonction-warning" id="toc-fonction-warning" class="nav-link" data-scroll-target="#fonction-warning">Fonction “<code>warning</code>”</a></li>
+  <li><a href="#fonction-stop" id="toc-fonction-stop" class="nav-link" data-scroll-target="#fonction-stop">Fonction “<code>stop</code>”</a></li>
+  <li><a href="#unit-tests" id="toc-unit-tests" class="nav-link" data-scroll-target="#unit-tests">Unit Tests</a></li>
+  <li><a href="#fonction-test_that" id="toc-fonction-test_that" class="nav-link" data-scroll-target="#fonction-test_that">Fonction “<code>test_that</code>”</a></li>
+  <li><a href="#test-driven-development" id="toc-test-driven-development" class="nav-link" data-scroll-target="#test-driven-development">Test Driven Development</a></li>
+  <li><a href="#behavior-driven-development" id="toc-behavior-driven-development" class="nav-link" data-scroll-target="#behavior-driven-development">Behavior-Driven Development</a></li>
+  </ul></li>
+  <li><a href="#packaging-programs" id="toc-packaging-programs" class="nav-link" data-scroll-target="#packaging-programs">Packaging Programs</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CS50’s Introduction to Programming with R</h1>
+<p class="subtitle lead">mes notes de manière linéaire et non optimisée</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>pas fait ou m’en souviens pas</p>
+</section>
+<section id="representing-data" class="level2">
+<h2 class="anchored" data-anchor-id="representing-data">Representing Data</h2>
+<p>pas fait ou m’en souviens pas</p>
+</section>
+<section id="transforming-data" class="level2">
+<h2 class="anchored" data-anchor-id="transforming-data">Transforming Data</h2>
+<p>pas fait ou m’en souviens pas</p>
+</section>
+<section id="applying-functions" class="level2">
+<h2 class="anchored" data-anchor-id="applying-functions">Applying Functions</h2>
+<p>pas fait ou m’en souviens pas</p>
+</section>
+<section id="tidying-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidying-data">Tidying Data</h2>
+<p>Travail sur le dataset <code>storms</code> inclus dans le package <code>tidyverse</code>.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20,778 × 13
+   name   year month   day  hour   lat  long status      category  wind pressure
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013
+ 2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013
+ 3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013
+ 4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013
+ 5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012
+ 6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012
+ 7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011
+ 8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006
+ 9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004
+10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002
+# ℹ 20,768 more rows
+# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+#   hurricane_force_diameter &lt;int&gt;</code></pre>
+</div>
+</div>
+<section id="fonction-select" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-select">Fonction ‘<code>select</code>’</h3>
+<p>Pour sélectionner des <em>colonnes</em></p>
+<p>Dans l’exemple suivant on en enlève avec “<code>-</code>” :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="fu">c</span>(lat, long, pressure, tropicalstorm_force_diameter, hurricane_force_diameter)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20,778 × 8
+   name   year month   day  hour status              category  wind
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;                  &lt;dbl&gt; &lt;int&gt;
+ 1 Amy    1975     6    27     0 tropical depression       NA    25
+ 2 Amy    1975     6    27     6 tropical depression       NA    25
+ 3 Amy    1975     6    27    12 tropical depression       NA    25
+ 4 Amy    1975     6    27    18 tropical depression       NA    25
+ 5 Amy    1975     6    28     0 tropical depression       NA    25
+ 6 Amy    1975     6    28     6 tropical depression       NA    25
+ 7 Amy    1975     6    28    12 tropical depression       NA    25
+ 8 Amy    1975     6    28    18 tropical depression       NA    30
+ 9 Amy    1975     6    29     0 tropical storm            NA    35
+10 Amy    1975     6    29     6 tropical storm            NA    40
+# ℹ 20,768 more rows</code></pre>
+</div>
+</div>
+<p>Et donc effectivement elles n’apparaissent plus dans notre tibble.</p>
+</section>
+<section id="utilisation-de-ends_with-pour-optimiser-ce-cas" class="level3">
+<h3 class="anchored" data-anchor-id="utilisation-de-ends_with-pour-optimiser-ce-cas">Utilisation de ‘<code>ends_with</code>’ pour optimiser ce cas</h3>
+<p>On aurait aussi pu écrire :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="fu">c</span>(lat, long, pressure, <span class="fu">ends_with</span>(<span class="st">"diameter"</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20,778 × 8
+   name   year month   day  hour status              category  wind
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;                  &lt;dbl&gt; &lt;int&gt;
+ 1 Amy    1975     6    27     0 tropical depression       NA    25
+ 2 Amy    1975     6    27     6 tropical depression       NA    25
+ 3 Amy    1975     6    27    12 tropical depression       NA    25
+ 4 Amy    1975     6    27    18 tropical depression       NA    25
+ 5 Amy    1975     6    28     0 tropical depression       NA    25
+ 6 Amy    1975     6    28     6 tropical depression       NA    25
+ 7 Amy    1975     6    28    12 tropical depression       NA    25
+ 8 Amy    1975     6    28    18 tropical depression       NA    30
+ 9 Amy    1975     6    29     0 tropical storm            NA    35
+10 Amy    1975     6    29     6 tropical storm            NA    40
+# ℹ 20,768 more rows</code></pre>
+</div>
+</div>
+<p>Autres fonctions du genre :</p>
+<ul>
+<li><p><code>starts_with()</code>: Starts with an exact prefix.</p></li>
+<li><p><code>ends_with()</code>: Ends with an exact suffix.</p></li>
+<li><p><code>contains()</code>: Contains a literal string.</p></li>
+<li><p><code>matches()</code>: Matches a regular expression.</p></li>
+<li><p><code>num_range()</code>: Matches a numerical range like x01, x02, x03.</p></li>
+</ul>
+</section>
+<section id="fonction-filter" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-filter">Fonction ‘<code>filter</code>’</h3>
+<p>Pour sélectionner des <em>lignes</em></p>
+<p>Par exemple pour sélectionner les lignes contenant la valeur “<em>hurricane</em>” dans la colonne <em>status</em> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(lat, long, pressure, <span class="fu">ends_with</span>(<span class="st">"diameter"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">"hurricane"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5,100 × 8
+   name      year month   day  hour status    category  wind
+   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;
+ 1 Blanche   1975     7    27     6 hurricane        1    65
+ 2 Blanche   1975     7    27    12 hurricane        1    70
+ 3 Blanche   1975     7    27    18 hurricane        1    75
+ 4 Blanche   1975     7    28     0 hurricane        1    75
+ 5 Blanche   1975     7    28     6 hurricane        1    70
+ 6 Caroline  1975     8    30     0 hurricane        1    65
+ 7 Caroline  1975     8    30     6 hurricane        1    65
+ 8 Caroline  1975     8    30    12 hurricane        1    65
+ 9 Caroline  1975     8    30    18 hurricane        1    70
+10 Caroline  1975     8    31     0 hurricane        3   100
+# ℹ 5,090 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="fonction-arrange" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-arrange">Fonction ‘<code>arrange</code>’</h3>
+<p>Pour ordonner des lignes selon la valeur des colonnes<br>
+(c’est incompréhensible dit comme ça mais rien de sorcier, c’est pour ordonner quoi)</p>
+<p>Pour ordonner par ordre décroissant on ajoute <code>desc</code> :<br>
+On peut ordonner par plusieurs variables (ordre dans lequel on les écrit compte)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(lat, long, pressure, <span class="fu">ends_with</span>(<span class="st">"diameter"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">"hurricane"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(wind), name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5,100 × 8
+   name     year month   day  hour status    category  wind
+   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;
+ 1 Allen    1980     8     7    18 hurricane        5   165
+ 2 Dorian   2019     9     1    16 hurricane        5   160
+ 3 Dorian   2019     9     1    18 hurricane        5   160
+ 4 Gilbert  1988     9    14     0 hurricane        5   160
+ 5 Wilma    2005    10    19    12 hurricane        5   160
+ 6 Allen    1980     8     5    12 hurricane        5   155
+ 7 Allen    1980     8     7    12 hurricane        5   155
+ 8 Allen    1980     8     8     0 hurricane        5   155
+ 9 Allen    1980     8     9     6 hurricane        5   155
+10 Dorian   2019     9     1    12 hurricane        5   155
+# ℹ 5,090 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="fonction-distinct" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-distinct">Fonction ‘<code>distinct</code>’</h3>
+<p>Pour ne pas avoir les mêmes exactes lignes plus d’une fois<br>
+En précisant une ou plusieurs variables dans cette fonction, cela permet de ne chercher que des valeurs uniques pour les variables en question</p>
+<p>Par exemple, si on ne veut avoir qu’une ligne ayant le même nom et année :<br>
+nb : <code>.keep_all</code> permet de garder toutes les autres colonnes que celles qui constituent notre critère de tri pour <code>distinct</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(lat, long, pressure, <span class="fu">ends_with</span>(<span class="st">"diameter"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">"hurricane"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(wind), name) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(name, year, <span class="at">.keep_all =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 337 × 8
+   name     year month   day  hour status    category  wind
+   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;
+ 1 Allen    1980     8     7    18 hurricane        5   165
+ 2 Dorian   2019     9     1    16 hurricane        5   160
+ 3 Gilbert  1988     9    14     0 hurricane        5   160
+ 4 Wilma    2005    10    19    12 hurricane        5   160
+ 5 Irma     2017     9     5    18 hurricane        5   155
+ 6 Milton   2024    10     7    20 hurricane        5   155
+ 7 Mitch    1998    10    26    18 hurricane        5   155
+ 8 Rita     2005     9    22     3 hurricane        5   155
+ 9 Andrew   1992     8    23    18 hurricane        5   150
+10 Anita    1977     9     2     6 hurricane        5   150
+# ℹ 327 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="fonction-write.csv" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-write.csv">Fonction ‘<code>write.csv</code>’</h3>
+<p>Pour enregistrer sous forme de fichier .csv :<br>
+Avec ici le choix d’enlever les noms de colonnes</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>hurricanes <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(year, name, wind)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(<span class="st">"hurricanes.csv"</span>, <span class="at">row.names =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fonction-read.csv" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-read.csv">Fonction ‘<code>read.csv</code>’</h3>
+<p>Pour ouvrir et stocker un csv dans un objet :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>hurricanes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"hurricanes.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fonction-group_by" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-group_by">Fonction ‘<code>group_by</code>’</h3>
+<p>Permet de regrouper selon une ou plusieurs variables (le cas échéant, l’ordre compte)</p>
+<p>Par exemple, si on veut trouver l’ouragan le plus puissant pour chaque année :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>hurricanes <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> wind)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 57 × 8
+# Groups:   year [50]
+   name    year month   day  hour status    category  wind
+   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;
+ 1 Gladys  1975    10     2    12 hurricane        4   120
+ 2 Belle   1976     8     9     0 hurricane        3   105
+ 3 Anita   1977     9     2     6 hurricane        5   150
+ 4 Ella    1978     9     4    12 hurricane        4   120
+ 5 David   1979     8    30    18 hurricane        5   150
+ 6 Allen   1980     8     7    18 hurricane        5   165
+ 7 Harvey  1981     9    15     0 hurricane        4   115
+ 8 Debby   1982     9    18     0 hurricane        4   115
+ 9 Alicia  1983     8    18     6 hurricane        3   100
+10 Diana   1984     9    12     0 hurricane        4   115
+# ℹ 47 more rows</code></pre>
+</div>
+</div>
+<p>Ici <code>slice_max</code> permet de prendre la plus grande valeur pour <code>wind</code>. Il existe d’autres fonctions du genre dans le package dplyr (inclus dans le tidyverse anyway) :</p>
+<ul>
+<li><p><code>slice_head()</code> and <code>slice_tail()</code> select the first or last rows.</p></li>
+<li><p><code>slice_sample()</code> randomly selects rows.</p></li>
+<li><p><code>slice_min()</code> and <code>slice_max()</code> select rows with the smallest or largest values of a variable.</p></li>
+</ul>
+<p>nb : pour que le regroupement soit temporaire/pour dégrouper, on utilise <code>ungroup()</code></p>
+</section>
+<section id="fonction-summarise" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-summarise">Fonction ‘<code>summarise</code>’</h3>
+<p>Généralement utilisée à la suite d’un <code>group_by</code>, permet d’effectuer plusieurs types de calculs comme la moyenne, le min, max, somme, etc.</p>
+<p>Par exemple si on veut savoir combien d’ouragans se sont produits chaque année :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hurricanes <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">hurricanes =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 50 × 2
+    year hurricanes
+   &lt;dbl&gt;      &lt;int&gt;
+ 1  1975          6
+ 2  1976          6
+ 3  1977          5
+ 4  1978          5
+ 5  1979          5
+ 6  1980          9
+ 7  1981          7
+ 8  1982          2
+ 9  1983          3
+10  1984          5
+# ℹ 40 more rows</code></pre>
+</div>
+</div>
+<p>Écrire <em>hurricanes =</em> avant le <code>n()</code> dans <code>summarise</code> permet de nommer la colonne qui donnera le résultat au lieu d’avoir juste n().</p>
+<p>Paranthèse mais dans un des exercices la syntaxe de <code>sum</code> m’a fait excessivement suer pour ce que c’est, donc je le note ici :<br>
+(le prompt était <em>“Summarize the data in the tibble to find the total emissions for each pollutant. Sort the pollutants from highest to lowest emissions.”</em>)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>air <span class="ot">&lt;-</span> air <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pollutant) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">emissions =</span> <span class="fu">sum</span>(emissions)) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(emissions))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fonction-pivot" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-pivot">Fonction ‘<code>pivot</code>’</h3>
+<p>Plus spécifiquement <code>pivot_wider</code> : à utiliser quand y’a des valeurs en ligne qui devraient être des colonnes elles-mêmes.<br>
+À l’inverse, <code>pivot_longer</code> : est pour des colonnes qui devraient être des valeurs en ligne.</p>
+<p>On passe à un autre dataset pour illustrer cette fonction. Ici on a une colonne “attribute” qui contient soit “GPA” soit “major” qui devraient elles-mêmes être des colonnes et non des valeurs.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   student attribute            value
+1    Mario     major       Statistics
+2    Mario       GPA              3.5
+3    Peach     major Computer Science
+4    Peach       GPA                4
+5   Bowser     major     Data Science
+6   Bowser       GPA              3.7
+7    Daisy     major     Data Science
+8    Daisy       GPA              3.9
+9    Luigi     major Computer Science
+10   Luigi       GPA              3.0
+11  Nabbit     major       Statistics
+12  Nabbit       GPA              2.5</code></pre>
+</div>
+</div>
+<p>On doit donc utiliser <code>pivot_wider</code> dans ce cas :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  students,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id_cols =</span> student,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> attribute, <span class="co"># ce qu'on veut en nom de nouvelles colonnes</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> value <span class="co"># ce qu'on veut en contenu de colonnes</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  student major            GPA  
+  &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;
+1 Mario   Statistics       3.5  
+2 Peach   Computer Science 4    
+3 Bowser  Data Science     3.7  
+4 Daisy   Data Science     3.9  
+5 Luigi   Computer Science 3.0  
+6 Nabbit  Statistics       2.5  </code></pre>
+</div>
+</div>
+<p>Je ne pense pas qu’il faille nécessairement utiliser “<code>id_cols</code>”, qui semble jouer un rôle de clé de jointure (?) ça m’a posé problème dans un des exercices et quand je l’ai enlevé ça marchait bien. Jsp.</p>
+<p>Spécifique à cet exemple mais : attention, dans ce qu’on a obtenu, la colonne GPA est de type “character” tandis qu’elle contient des valeurs numériques, il faut donc convertir avant de faire autre chose.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>students<span class="sc">$</span>GPA <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(students<span class="sc">$</span>GPA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On peut ensuite faire des opérations comme la moyenne avec <code>summarise</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>students <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(major) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">GPA =</span> <span class="fu">mean</span>(GPA))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  major              GPA
+  &lt;chr&gt;            &lt;dbl&gt;
+1 Computer Science   3.5
+2 Data Science       3.8
+3 Statistics         3  </code></pre>
+</div>
+</div>
+</section>
+<section id="stringr-pour-nettoyer-un-dataset-dégueulasse" class="level3">
+<h3 class="anchored" data-anchor-id="stringr-pour-nettoyer-un-dataset-dégueulasse"><code>stringr</code> pour nettoyer un dataset dégueulasse</h3>
+<p>On passe à un nouveau set pour cet exemple.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                          show
+1   Avatar: the last airbender
+2                       Ben 10
+3                       Arthur
+4        Spongebob Squarepants
+5             Phineas and Ferb
+6               Hannah Montana
+7                       Arthur
+8        Spongebob Squarepants
+9   Avatar: The Last Airbender
+10            Phineas and Ferb
+11           Fairly Oddparents
+12       Spongebob Squarepants
+13            Phineas and Ferb
+14               Jimmy Neutron
+15              Jimmy  Neutron
+16                      Arthur
+17           Phineas and  Ferb
+18                      Avatar
+19            Phineas and Ferb
+20       Spongebob Squarepants
+21                Kim Possible
+22 Avatar: The Last Airbender 
+23               Jimmy Neutron
+24                      Arthur
+25                      Ben 10
+26  Avatar: The Last Airbender
+27  Avatar: The Last Airbender
+28                  Scooby Doo
+29  Avatar: The Last Airbender
+30           Phineas And Ferb 
+31 Avatar:  The Last Airbender
+32  Avatar: The Last Airbender
+33  Avatar: The Last Airbender
+34            The Proud Family
+35       Spongebob Squarepants
+36               Jimmy Neutron
+37       Spongebob Squarepants
+38           Fairly Oddparents
+39                  Scooby Doo
+40                      Arthur
+41                      Arthur
+42                      Ben 10
+43       Spongebob Squarepants
+44  Avatar: The Last Airbender
+45                      Arthur
+46                      Arthur
+47       Spongebob Squarepants
+48                Kim Possible
+49                      Arthur
+50            Phineas And Ferb</code></pre>
+</div>
+</div>
+<p>On a une liste de dessins animés/séries/films/whatever, on les classe par nombre de votes comme qui suit :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>shows <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(show) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">votes =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(votes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 2
+   show                          votes
+   &lt;chr&gt;                         &lt;int&gt;
+ 1 "Arthur"                          9
+ 2 "Spongebob Squarepants"           8
+ 3 "Avatar: The Last Airbender"      6
+ 4 "Phineas and Ferb"                4
+ 5 "Ben 10"                          3
+ 6 "Jimmy Neutron"                   3
+ 7 "Fairly Oddparents"               2
+ 8 "Kim Possible"                    2
+ 9 "Scooby Doo"                      2
+10 " Avatar: The Last Airbender"     1
+11 "Avatar"                          1
+12 "Avatar:  The Last Airbender"     1
+13 "Avatar: The Last Airbender "     1
+14 "Avatar: the last airbender"      1
+15 "Hannah Montana"                  1
+16 "Jimmy  Neutron"                  1
+17 "Phineas And Ferb"                1
+18 "Phineas And Ferb "               1
+19 "Phineas and  Ferb"               1
+20 "The Proud Family"                1</code></pre>
+</div>
+</div>
+<p>On se rend compte du problème avec Avatar et d’autres : y’a plusieurs noms de show qui correspondent au même truc mais sont pas écrits pareil.</p>
+<p>On peut enlever les espaces vides avec ‘<code>str_trim</code>’ (enlève les espaces <strong>avant et après</strong> mais pas dedans) et ‘<code>str_squish</code>’ (enlève les espaces <strong>à l’intérieur/dedans</strong>) :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>shows<span class="sc">$</span>show <span class="ot">&lt;-</span> shows<span class="sc">$</span>show <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_trim</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 2
+   show                       votes
+   &lt;chr&gt;                      &lt;int&gt;
+ 1 Arthur                         9
+ 2 Avatar: The Last Airbender     9
+ 3 Spongebob Squarepants          8
+ 4 Phineas and Ferb               5
+ 5 Jimmy Neutron                  4
+ 6 Ben 10                         3
+ 7 Fairly Oddparents              2
+ 8 Kim Possible                   2
+ 9 Phineas And Ferb               2
+10 Scooby Doo                     2
+11 Avatar                         1
+12 Avatar: the last airbender     1
+13 Hannah Montana                 1
+14 The Proud Family               1</code></pre>
+</div>
+</div>
+<p>On constate toujours des différences, au niveau des minuscules/majuscules par exemple.<br>
+Plusieurs options existent pour homogénéiser :</p>
+<ul>
+<li><p>‘<code>str_to_lower</code>’ pour tout mettre en minuscules,</p></li>
+<li><p>‘<code>str_to_upper</code>’ pour tout mettre en majuscules,</p></li>
+<li><p>‘<code>str_to_title</code>’ pour que chaque mot ait sa première lettre en majuscule</p></li>
+</ul>
+<p>C’est ce dernier qui est le plus pertinent pour notre exemple ici</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>shows<span class="sc">$</span>show <span class="ot">&lt;-</span> shows<span class="sc">$</span>show <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_trim</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_to_title</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   show                       votes
+   &lt;chr&gt;                      &lt;int&gt;
+ 1 Avatar: The Last Airbender    10
+ 2 Arthur                         9
+ 3 Spongebob Squarepants          8
+ 4 Phineas And Ferb               7
+ 5 Jimmy Neutron                  4
+ 6 Ben 10                         3
+ 7 Fairly Oddparents              2
+ 8 Kim Possible                   2
+ 9 Scooby Doo                     2
+10 Avatar                         1
+11 Hannah Montana                 1
+12 The Proud Family               1</code></pre>
+</div>
+</div>
+<p>Il reste qqc à nettoyer : on a des valeurs “Avatar: The Last Airbender” et “Avatar” qui sont séparées, on aimerait qu’elles soient considérées comme la même chose, pour ce faire on va utiliser ‘<code>str_detect</code>’.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>shows<span class="sc">$</span>show[<span class="fu">str_detect</span>(shows<span class="sc">$</span>show, <span class="st">"Avatar"</span>)] <span class="ot">&lt;-</span> <span class="st">"Avatar : The Last Airbender"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 2
+   show                        votes
+   &lt;chr&gt;                       &lt;int&gt;
+ 1 Avatar : The Last Airbender    11
+ 2 Arthur                          9
+ 3 Spongebob Squarepants           8
+ 4 Phineas And Ferb                7
+ 5 Jimmy Neutron                   4
+ 6 Ben 10                          3
+ 7 Fairly Oddparents               2
+ 8 Kim Possible                    2
+ 9 Scooby Doo                      2
+10 Hannah Montana                  1
+11 The Proud Family                1</code></pre>
+</div>
+</div>
+<p>On affecte un nom commun à tous les termes détectés.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>!!! être précautionneux quand on utilise ça et être sûr de ce qu’on remplace</p>
+</div>
+</div>
+</section>
+</section>
+<section id="visualizing-data" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-data">Visualizing Data</h2>
+<section id="diagramme-en-barres" class="level3">
+<h3 class="anchored" data-anchor-id="diagramme-en-barres">DIAGRAMME EN BARRES</h3>
+<p>On travaille sur le dataset suivant :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  candidate votes
+1     Mario   100
+2     Peach   200
+3    Bowser   150</code></pre>
+</div>
+</div>
+</section>
+<section id="fonction-ggplot" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-ggplot">Fonction ‘<code>ggplot</code>’</h3>
+<p>Pour faire des représentations graphiques.</p>
+<p>Pour le dataset qui nous sert d’exemple, il est pertinent de faire un diagramme en barres.</p>
+<p>Pour faire un graphique de base de la base il faut avoir un dataset, préciser nos axes avec <code>aes</code> et <code>geom_col()</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fonction-scale" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-scale">Fonction ‘<code>scale</code>’</h3>
+<p>Pour changer l’échelle (x ou y, continue ou discrète).</p>
+<p>Par exemple ici on veut augmenter un peu l’espace au dessus, donc on va utiliser <code>scale_y_continuous</code> parce qu’on a des données continues sur l’axe y.<br>
+Cette fonction prend pour argument <code>limits</code>, qui prend pour valeur un vecteur (le début et la fin de notre échelle).<br>
+On choisit ici que l’échelle de l’axe <code>y</code> aille de 0 à 250.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fonction-labs" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-labs">Fonction ‘<code>labs</code>’</h3>
+<p>Labs is short for labels, donc les étiquettes.</p>
+<p>Par exemple pour renommer nos axes x, y et donner un titre :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Pour changer les couleurs, il faut utiliser l’argument <code>aes</code> dans lequel on met <code>fill</code> dans <code>geom_col()</code>.<br>
+Ici on fait en sorte que la couleur dépende de la colonne <em>candidate</em> (donc une couleur par candidat).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Pour être inclusif envers les daltoniens, on utilise les palettes <code>viridis</code>.<br>
+Ainsi, pour adapter les couleurs choisies de base en des couleurs inclusives, on ajoute ici <code>scale_fill_viridis_d()</code> où le <code>d</code> correspond au fait que nos catégories sont discrètes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Et boum c’est daltonien-friendly.</p>
+<p>On en profite pour renommer le titre de la légende en écrivant le nom désiré entre les paranthèses de <code>scale_fill_viridis_d()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="st">"Candidate"</span>) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fonction-theme" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-theme">Fonction ‘<code>theme</code>’</h3>
+<p>Plusieurs thèmes sont disponibles, commencent tous par <code>theme_</code> on ajoute cette fonction à la fin.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> candidate, <span class="at">y =</span> votes)) <span class="sc">+</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> candidate)) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="st">"Candidate"</span>) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">250</span>)) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Candidate"</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Votes"</span>,</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Election Results"</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fonction-ggsave" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-ggsave">Fonction ‘<code>ggsave</code>’</h3>
+<p>Pour sauvegarder notre plot</p>
+<p>(après avoir stocké notre plot dans un objet ‘p’, on choisit ici la largeur et hauteur désirée)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"votes.png"</span>,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> p,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">1200</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">900</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">"px"</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="nuage-de-points" class="level3">
+<h3 class="anchored" data-anchor-id="nuage-de-points">NUAGE DE POINTS</h3>
+<p>On travaille à présent sur le dataset suivant :</p>
+<p>Maintenant au lieu d’utiliser <code>geom_col</code> on va utiliser <code>geom_point</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  candy, </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> price_percentile, <span class="at">y =</span> sugar_percentile)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Mais parfois on a des points qui vont avoir exactement les mêmes valeurs et vont donc se superposer. Pour remédier à ça, on peut faire en sorte que ce type de points soient un peu séparés en utilisant <code>geom_jitter</code> à la place de <code>geom_point</code>.</p>
+<p>Donc on fait ça, on ajoute des titres à nos axes, on change le thème en classique…<br>
+Pour changer la couleur on met l’argument <code>color</code> au sein de <code>geom_jitter</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  candy, </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> price_percentile, <span class="at">y =</span> sugar_percentile)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"darkorchid"</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Price"</span>,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Sugar"</span>,</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Price and Sugar"</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Pour changer la taille des points, on utilise <code>size</code> (la valeur par défaut est 1.5 ou qqc comme ça) :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  candy, </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> price_percentile, <span class="at">y =</span> sugar_percentile)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"darkorchid"</span>,</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Price"</span>,</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Sugar"</span>,</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Price and Sugar"</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>On peut aussi changer la forme avec <code>shape</code> (plein de formes possibles, tu connais). La forme 21 sont des cercles dont on peut changer la couleur de fond et de contour.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  candy, </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> price_percentile, <span class="at">y =</span> sugar_percentile)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"darkorchid"</span>,</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"orchid"</span>,</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Price"</span>,</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Sugar"</span>,</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Price and Sugar"</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="courbes" class="level3">
+<h3 class="anchored" data-anchor-id="courbes">COURBES</h3>
+<p>On passe au dataset suivant qui décrit la vitesse du vent de la tempête Anita et la date et heure où ces vents ont été observés :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 2
+   timestamp            wind
+   &lt;dttm&gt;              &lt;int&gt;
+ 1 1977-08-29 12:00:00    20
+ 2 1977-08-29 18:00:00    25
+ 3 1977-08-30 00:00:00    30
+ 4 1977-08-30 06:00:00    40
+ 5 1977-08-30 12:00:00    50
+ 6 1977-08-30 18:00:00    65
+ 7 1977-08-31 00:00:00    70
+ 8 1977-08-31 06:00:00    75
+ 9 1977-08-31 12:00:00    75
+10 1977-08-31 18:00:00    80
+11 1977-09-01 00:00:00    80
+12 1977-09-01 06:00:00    85
+13 1977-09-01 12:00:00    90
+14 1977-09-01 18:00:00   110
+15 1977-09-02 00:00:00   140
+16 1977-09-02 06:00:00   150
+17 1977-09-02 12:00:00   120
+18 1977-09-02 18:00:00    70
+19 1977-09-03 00:00:00    40
+20 1977-09-03 06:00:00    25</code></pre>
+</div>
+</div>
+<p>On peut rajouter <code>geom_line</code> après <code>geom_point</code> pour relier les points.<br>
+nb : on peut aussi utiliser <code>geom_line</code> tout seul, et dans ce cas on a juste un tracé sans points</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  anita,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>L’ordre dans lequel on écrit <code>geom_point</code> et <code>geom_line</code> importe : c’est comme un système de calques, le dernier sera celui le plus au dessus (on le remarque quand on change les couleurs).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  anita,</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"deepskyblue4"</span>) <span class="sc">+</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Wind Speed (Knots)"</span>,</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Hurricane Anita"</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Concernant les lignes, on peut changer, à l’intérieur de <code>geom_line()</code> le type de ligne (pointillés, etc.) et son épaisseur.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  anita,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="dv">1</span>,</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.5</span>,</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"deepskyblue4"</span>,</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Wind Speed (Knots)"</span>,</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Hurricane Anita"</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Maintenant on veut ajouter une ligne horizontale pour indiquer quand est-ce qu’Anita est devenue un ouragan (considéré un ouragan à partir d’un vent de 65 noeuds).<br>
+Pour ce faire, on utilise <code>geom_hline</code> en précisant bien le <code>yintercept</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  anita,</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> timestamp, <span class="at">y =</span> wind)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="dv">1</span>,</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.5</span>,</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"deepskyblue4"</span>,</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="dv">2</span>,</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> <span class="dv">65</span> <span class="co"># là où notre ligne débute sur l'axe des ordonnées</span></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Wind Speed (Knots)"</span>,</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Hurricane Anita"</span></span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="testing-programs" class="level2">
+<h2 class="anchored" data-anchor-id="testing-programs">Testing Programs</h2>
+<p>Euh… là vraiment ils m’ont perdu… je comprends pas comment on passe de apprendre quelques fonctions et graphiques de base à tester son code quand on vient de programmer une fonction pour que tout se passe bien… POURQUOI ON PASSE DU COQ À L’ÂNE ?????????????????????????</p>
+<section id="exceptions" class="level3">
+<h3 class="anchored" data-anchor-id="exceptions">Exceptions</h3>
+<p>quand notre programme rencontre un pb imprévu/truc qu’il sait pas gérer et s’arrête<br>
+par ex : on fait une fonction pour calculer la moyenne mais quand on veut l’utiliser on met des données de type character plutot que des nombres</p>
+<p>Ici on veut que ça retourne “NA” quand on met une valeur non-numérique :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>average <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Donc si on tape <code>average(c("1", "2", "3"))</code> on verra ça :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+</section>
+<section id="fonction-message" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-message">Fonction ‘<code>message</code>’</h3>
+<p>Pour avoir un message qui s’affiche dans la console</p>
+<p>Par exemple, ici on veut spécifier la raison pour laquelle l’utilisateur ferait face au message NA en tapant une valeur autre que numérique :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>average <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"`x` must be a numeric vector. Returning NA instead."</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Donc si on tape <code>average(c("1", "2", "3"))</code> on verra <strong>“<code>x</code> must be a numeric vector. Returning NA instead.”</strong></p>
+</section>
+<section id="fonction-warning" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-warning">Fonction “<code>warning</code>”</h3>
+<p>Pour dire à l’utilisateur que qqc ne va pas</p>
+<p>C’est d’ailleurs ce qu’on aurait dû utiliser (discutable) au lieu du message :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>average <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">"`x` must be a numeric vector. Returning NA instead."</span>)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Donc si on tape <code>average(c("1", "2", "3"))</code> on verra <strong>“Warning message: In average(c(”1”, “2”, “3”)) : <code>x</code> must be a numeric vector. Returning NA instead.”</strong></p>
+</section>
+<section id="fonction-stop" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-stop">Fonction “<code>stop</code>”</h3>
+<p>Là c’est le next step encore, pour dire que la fonction peut pas tourner avec ce que l’utilisateur a tapé</p>
+<p>Dans notre exemple ça ne va même pas donner “NA” parce que dès que l’utilisateur rentre une fonction non-numérique, ça va donner erreur :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>average <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"`x` must be a numeric vector."</span>)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Si on tape <code>average(c("1", "2", "3"))</code> on verra <strong>“Error in average(c(”1”, “2”, “3”)) : <code>x</code> must be a numeric vector.”</strong></p>
+<p>En gros ces trois fonctions, <code>message</code>, <code>warning</code> et <code>stop</code> permettent de communiquer avec l’utilisateur et faut adapter selon la situation.</p>
+<p>On rajoute un <code>warning</code> dans notre exemple pour les cas où l’utilisateur fournit des données contenant des NAs :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>average <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"`x` must be a numeric vector."</span>)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(<span class="fu">is.na</span>(x))) {</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">"`x` contains one or more NA values."</span>)</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Si cette fois-ci on tape <code>average(c(1, 2, NA))</code> on verra <strong>“Warning message: In average(c(1, 2, NA)) : <code>x</code> contains one or more NA values.”</strong></p>
+</section>
+<section id="unit-tests" class="level3">
+<h3 class="anchored" data-anchor-id="unit-tests">Unit Tests</h3>
+<p>C’est du code qu’on écrit pour tester des fonctions</p>
+<p>En général on teste notre fonction dans un autre fichier.<br>
+Pour faire appel à notre premier fichier (celui qui contient la fonction créée), on utilise la fonction <code>source</code>.<br>
+Par exemple :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"average6.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ensuite il a fait ça :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>test_average <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">average</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)) <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"`average` passed test :)</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"`average` failed test :(</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="fu">test_average</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>`average` passed test :)</code></pre>
+</div>
+</div>
+<p>Mais j’avoue j’ai pas trop compris l’intérêt<br>
+Enfin surtout je comprends pas, il donne déjà le résultat dans son truc…genre ici 2…</p>
+<p>Ensuite il enchaîne en ajoutant une autre figure de cas à son test avec des chiffres négatifs, puis une autre avec un zéro :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>test_average <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">average</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)) <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"`average` passed test :)</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"`average` failed test :(</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">3</span>)) <span class="sc">==</span> <span class="sc">-</span><span class="dv">2</span>) {</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"`average` passed test :)</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"`average` failed test :(</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"`average` passed test :)</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"`average` failed test :(</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a><span class="fu">test_average</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>`average` passed test :)
+`average` passed test :)
+`average` passed test :)</code></pre>
+</div>
+</div>
+<p>Ok je crois que je capte… en gros on met le résultat auquel on devrait s’attendre si notre fonction fonctionne correctement, et s’il s’avère qu’on a merdé dans le codage de notre fonction et qu’elle n’arrive pas au résultat escompté alors on aurait eu un “failed test”.</p>
+<p>Mais bon ça fait beaucoup de lignes de code tout ça, c’est pour ça qu’on préfèrera utiliser le package <code>testthat</code></p>
+</section>
+<section id="fonction-test_that" class="level3">
+<h3 class="anchored" data-anchor-id="fonction-test_that">Fonction “<code>test_that</code>”</h3>
+<p>Si ce n’est pas déjà fait :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(testthat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'testthat'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:readr':
+
+    edition_get, local_edition</code></pre>
+</div>
+</div>
+<p>Dans la fonction on dit ce qu’on teste, suivi des cas qu’on teste.<br>
+<code>test_that</code> vient avec des fonctions à utiliser dedans, comme <code>expect_equal</code> pour exprimer le fait que quand on entre telles valeurs, on s’attend à ce que la fonction donne une valeur égale à…[telle valeur]</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"`average` calculates mean"</span>, {</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)), <span class="dv">2</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">3</span>)), <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)), <span class="dv">0</span>)</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>)), <span class="dv">0</span>)</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test passed with 4 successes 🎉.</code></pre>
+</div>
+</div>
+<p>Pour que notre code reste lisible, il faut qu’on divise notre code selon ce qu’on fait.<br>
+Si on veut tester le fait que notre fonction émette un <code>warning</code>, il faut utiliser <code>expect_warning</code> (il existe aussi <code>expect_no_warning</code>).<br>
+Donc quand on met tel input, on aura un warning :<br>
+<em>(nb : il a été nécessaire de réarranger l’ordre dans lequel on a écrit notre fonction pour que les tests tournent bien sur le <code>average(c(NA, NA, NA))</code> parce que c’est pas considéré comme numérique donc ça stoppait, mais si on met notre stop après le warning, ça renvoie ce qu’on voulait : qu’il y a des NA)</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"`average` calculates mean"</span>, {</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)), <span class="dv">2</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">3</span>)), <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)), <span class="dv">0</span>)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>)), <span class="dv">0</span>)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test passed with 4 successes 🎊.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"`average` warns about NAs in input"</span>, {</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_warning</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>)))</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_warning</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>)))</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test passed with 2 successes 🥳.</code></pre>
+</div>
+</div>
+<p>Bon le frérot rajoute encore et toujours des figures de cas à tester, maintenant on en met une entre les deux qu’on a déjà (je les ai pas mises ici par souci de lisibilité) pour utiliser la fonction <code>suppressWarnings</code> pour ignorer les warning et juste tester la valeur obtenue.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"`average` returns NA with NAs in input"</span>, {</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">suppressWarnings</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>))), <span class="cn">NA</span>)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">suppressWarnings</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>))), <span class="cn">NA</span>)</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test passed with 2 successes 🎊.</code></pre>
+</div>
+</div>
+<p>La fonction <code>expect_error</code> permet de dire qu’on s’attend à une erreur si on donne telle valeur, ici on le fait avec des valeurs de type character :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"`average` stops if `x` is non-numeric"</span>, {</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_error</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="st">"quack!"</span>)))</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_error</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>)))</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test passed with 2 successes 🎊.</code></pre>
+</div>
+</div>
+</section>
+<section id="test-driven-development" class="level3">
+<h3 class="anchored" data-anchor-id="test-driven-development">Test Driven Development</h3>
+<p>Franchement j’ai un peu lâché l’affaire, ça m’a perdu tout ça.</p>
+<p>Test driven development : commence par écrire le test de sa fonction avant d’écrire sa fonction.</p>
+</section>
+<section id="behavior-driven-development" class="level3">
+<h3 class="anchored" data-anchor-id="behavior-driven-development">Behavior-Driven Development</h3>
+<p>Utilise fonctions <code>describe</code> pour décrire ce qu’on veut que notre fonction fasse et <code>it</code> pour que notre fonction fasse qqc en particulier.</p>
+</section>
+</section>
+<section id="packaging-programs" class="level2">
+<h2 class="anchored" data-anchor-id="packaging-programs">Packaging Programs</h2>
+<p>Peut-être que je regarderai la vidéo un jour mais la partie testing m’a vraiment découragé.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
