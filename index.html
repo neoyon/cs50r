@@ -1295,7 +1295,7 @@ Attaching package: 'testthat'</code></pre>
 <span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>)), <span class="dv">0</span>)</span>
 <span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed with 4 successes 😀.</code></pre>
+<pre><code>Test passed with 4 successes 🌈.</code></pre>
 </div>
 </div>
 <p>Pour que notre code reste lisible, il faut qu’on divise notre code selon ce qu’on fait.<br>
@@ -1310,14 +1310,14 @@ Donc quand on met tel input, on aura un warning :<br>
 <span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>)), <span class="dv">0</span>)</span>
 <span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed with 4 successes 🥳.</code></pre>
+<pre><code>Test passed with 4 successes 🌈.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"`average` warns about NAs in input"</span>, {</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_warning</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>)))</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_warning</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>)))</span>
 <span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed with 2 successes 🎉.</code></pre>
+<pre><code>Test passed with 2 successes 🥇.</code></pre>
 </div>
 </div>
 <p>Bon le frérot rajoute encore et toujours des figures de cas à tester, maintenant on en met une entre les deux qu’on a déjà (je les ai pas mises ici par souci de lisibilité) pour utiliser la fonction <code>suppressWarnings</code> pour ignorer les warning et juste tester la valeur obtenue.</p>
@@ -1327,7 +1327,7 @@ Donc quand on met tel input, on aura un warning :<br>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="fu">suppressWarnings</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>))), <span class="cn">NA</span>)</span>
 <span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed with 2 successes 😀.</code></pre>
+<pre><code>Test passed with 2 successes 🎉.</code></pre>
 </div>
 </div>
 <p>La fonction <code>expect_error</code> permet de dire qu’on s’attend à une erreur si on donne telle valeur, ici on le fait avec des valeurs de type character :</p>
@@ -1337,7 +1337,7 @@ Donc quand on met tel input, on aura un warning :<br>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_error</span>(<span class="fu">average</span>(<span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>)))</span>
 <span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed with 2 successes 😸.</code></pre>
+<pre><code>Test passed with 2 successes 🎉.</code></pre>
 </div>
 </div>
 </section>

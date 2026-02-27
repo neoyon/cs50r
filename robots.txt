@@ -1,1 +1,2 @@
-Sitemap: https://neoyon.github.io/cs50r/sitemap.xml
+User-agent: *
+Disallow: /
